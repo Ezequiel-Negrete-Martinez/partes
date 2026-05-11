@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte de Trabajo · Fontanería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  :root {
+    --green: #0A5C46;
+    --green-mid: #0F7A5E;
+    --green-light: #D4EDE6;
+    --green-pale: #F0FAF7;
+    --accent: #E8F5F1;
+    --text: #111917;
+    --text-mid: #3D5249;
+    --text-soft: #7A9089;
+    --border: #C8DDD8;
+    --border-light: #E4EFEC;
+    --bg: #F7FAFA;
+    --white: #FFFFFF;
+    --red: #C0392B;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(10,92,70,0.08), 0 4px 16px rgba(10,92,70,0.06);
+    --shadow-sm: 0 1px 4px rgba(10,92,70,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ─────────────────────────────── */
+  .header {
+    background: var(--green);
+    color: white;
+    padding: 1rem 1.25rem 1.25rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(10,92,70,0.25);
+  }
+  .header-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo i { font-size: 22px; color: white; }
+  .header-text { flex: 1; }
+  .header-text h1 { font-size: 16px; font-weight: 600; color: white; }
+  .header-text p { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 1px; }
+  .parte-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── MAIN ────────────────────────────────── */
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 5rem;
+  }
+
+  /* ── SECTION CARD ────────────────────────── */
+  .section-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 1.25rem 0.85rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-icon i { font-size: 16px; color: var(--green); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .section-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  /* ── FIELDS ──────────────────────────────── */
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-soft);
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  input, textarea, select {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(15,122,94,0.12);
+  }
+  textarea { resize: vertical; line-height: 1.55; min-height: 80px; }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A9089' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row3 { display: grid; grid-template-columns: 1fr 70px 80px 34px; gap: 6px; align-items: flex-end; }
+
+  /* ── MATERIALES ──────────────────────────── */
+  .materiales-header {
+    display: grid;
+    grid-template-columns: 1fr 70px 80px 34px;
+    gap: 6px;
+    margin-bottom: 6px;
+    padding: 0 2px;
+  }
+  .materiales-header span {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .material-row { 
+    display: grid;
+    grid-template-columns: 1fr 70px 80px 34px;
+    gap: 6px;
+    margin-bottom: 6px;
+    align-items: center;
+  }
+  .material-row input { font-size: 13px; padding: 8px 10px; }
+  .del-btn {
+    width: 34px; height: 34px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--text-soft);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .del-btn:hover { border-color: var(--red); color: var(--red); }
+  .add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-mid);
+    background: var(--green-pale);
+    border: 1.5px dashed var(--green-light);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-top: 4px;
+    width: 100%;
+    justify-content: center;
+    transition: background 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .add-btn:hover { background: var(--green-light); }
+
+  /* ── TOTALES ─────────────────────────────── */
+  .totals-box {
+    background: var(--green-pale);
+    border: 1.5px solid var(--green-light);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-top: 1rem;
+  }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-mid);
+    padding: 3px 0;
+  }
+  .total-sep { border: none; border-top: 1px solid var(--border-light); margin: 6px 0; }
+  .total-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--green);
+    padding-top: 4px;
+  }
+
+  /* ── FOTOS ───────────────────────────────── */
+  .foto-area {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .foto-area:hover { border-color: var(--green-mid); background: var(--green-pale); }
+  .foto-area i { font-size: 30px; color: var(--text-soft); display: block; }
+  .foto-area p { font-size: 13px; color: var(--text-soft); margin-top: 6px; }
+  .fotos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .foto-thumb {
+    aspect-ratio: 1;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid var(--border-light);
+  }
+  .foto-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .foto-del {
+    position: absolute; top: 4px; right: 4px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+  }
+
+  /* ── FIRMA ───────────────────────────────── */
+  .firma-wrap {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--white);
+  }
+  canvas.firma-area {
+    display: block;
+    width: 100%;
+    height: 130px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+  .firma-btns {
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px 10px;
+    border-top: 1px solid var(--border-light);
+    background: var(--bg);
+  }
+  .firma-btns button {
+    font-size: 12px;
+    padding: 5px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: var(--white);
+    cursor: pointer;
+    color: var(--text-soft);
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 4px;
+    transition: border-color 0.15s;
+  }
+  .firma-btns button:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── BOTTOM BAR ──────────────────────────── */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--white);
+    border-top: 1px solid var(--border-light);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 -4px 20px rgba(10,92,70,0.1);
+    z-index: 100;
+  }
+  .bottom-bar-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .total-preview {
+    flex: 1;
+  }
+  .total-preview .label { font-size: 11px; color: var(--text-soft); }
+  .total-preview .amount {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--green);
+    font-family: 'DM Mono', monospace;
+  }
+  .share-row {
+    display: flex;
+    gap: 8px;
+  }
+  .btn-share {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-share:hover { background: var(--bg); }
+  .btn-share.wa { border-color: #25D366; color: #25D366; }
+  .btn-share.wa:hover { background: #f0fff5; }
+  .btn-share.email { border-color: var(--green-mid); color: var(--green-mid); }
+  .btn-share.email:hover { background: var(--green-pale); }
+  .btn-share i { font-size: 18px; }
+  .btn-nuevo {
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--green);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 6px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .btn-nuevo:hover { background: var(--green-mid); }
+
+  /* ── DIVIDER LABEL ───────────────────────── */
+  .divider-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+
+  /* ── MOBILE ──────────────────────────────── */
+  @media (max-width: 480px) {
+    .header { padding: 0.85rem 1rem 1rem; }
+    .main { padding: 1rem 0.75rem 5.5rem; }
+    .section-body { padding: 0.9rem 1rem 1rem; }
+    .materiales-header,
+    .material-row { grid-template-columns: 1fr 58px 68px 30px; gap: 5px; }
+    .row2 { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .fotos-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .share-row { flex-wrap: wrap; }
+    .btn-share span { display: none; }
+    .total-preview .amount { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo"><i class="ti ti-tool"></i></div>
+    <div class="header-text">
+      <h1>Parte de Trabajo</h1>
+      <p>Fontanería Profesional</p>
+    </div>
+    <div class="parte-badge" id="num-parte-header">—</div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- 1. CLIENTE -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-user"></i></div>
+      <div class="section-title">Datos del cliente</div>
+    </div>
+    <div class="section-body">
+      <div class="field"><label>Nombre completo</label><input type="text" id="cli-nombre" placeholder="Juan García López"></div>
+      <div class="row2">
+        <div class="field"><label>Teléfono</label><input type="tel" id="cli-tel" placeholder="600 000 000"></div>
+        <div class="field"><label>Fecha</label><input type="date" id="cli-fecha"></div>
+      </div>
+      <div class="field"><label>Dirección</label><input type="text" id="cli-dir" placeholder="Calle, número, piso"></div>
+      <div class="field"><label>Población</label><input type="text" id="cli-pob" placeholder="Jerez de la Frontera"></div>
+    </div>
+  </div>
+
+  <!-- 2. TRABAJO -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-tools"></i></div>
+      <div class="section-title">Descripción del trabajo</div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Tipo de trabajo</label>
+        <select id="tipo-trabajo">
+          <option value="">Seleccionar...</option>
+          <option>Reparación de avería</option>
+          <option>Instalación nueva</option>
+          <option>Mantenimiento preventivo</option>
+          <option>Desatasco</option>
+          <option>Cambio de grifería</option>
+          <option>Reparación de caldera</option>
+          <option>Detección de fugas</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="field"><label>Descripción detallada</label><textarea id="desc" rows="4" placeholder="Describe el trabajo realizado..."></textarea></div>
+      <div class="field"><label>Observaciones / Recomendaciones</label><textarea id="obs" rows="2" placeholder="Incidencias, recomendaciones al cliente..."></textarea></div>
+    </div>
+  </div>
+
+  <!-- 3. MATERIALES Y HORAS -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-package"></i></div>
+      <div class="section-title">Materiales y costes</div>
+    </div>
+    <div class="section-body">
+
+      <div class="divider-label">Materiales utilizados</div>
+      <div class="materiales-header">
+        <span>Material</span><span>Ud.</span><span>€/ud.</span><span></span>
+      </div>
+      <div id="materiales-list"></div>
+      <button class="add-btn" onclick="addMaterial()">
+        <i class="ti ti-plus" style="font-size:14px"></i> Añadir material
+      </button>
+
+      <div class="divider-label" style="margin-top:1.25rem">Mano de obra</div>
+      <div class="row2">
+        <div class="field"><label>Horas trabajadas</label><input type="number" id="horas" min="0" step="0.5" placeholder="2" oninput="calcTotal()"></div>
+        <div class="field"><label>Precio / hora (€)</label><input type="number" id="precio-hora" min="0" placeholder="35" oninput="calcTotal()"></div>
+      </div>
+
+      <div class="divider-label">Desplazamiento</div>
+      <div class="row2">
+        <div class="field"><label>Km recorridos</label><input type="number" id="km" min="0" placeholder="0" oninput="calcTotal()"></div>
+        <div class="field"><label>Precio / km (€)</label><input type="number" id="precio-km" min="0" step="0.01" placeholder="0.30" oninput="calcTotal()"></div>
+      </div>
+
+      <!-- TOTALES -->
+      <div class="totals-box">
+        <div class="total-row"><span>Materiales</span><span id="t-mat">0,00 €</span></div>
+        <div class="total-row"><span>Mano de obra</span><span id="t-mo">0,00 €</span></div>
+        <div class="total-row"><span>Desplazamiento</span><span id="t-desp">0,00 €</span></div>
+        <hr class="total-sep">
+        <div class="total-row"><span>Base imponible</span><span id="t-total">0,00 €</span></div>
+        <div class="total-row"><span>IVA (21%)</span><span id="t-iva">0,00 €</span></div>
+        <hr class="total-sep">
+        <div class="total-final"><span>Total con IVA</span><span id="t-total-iva">0,00 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. FOTOS -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-camera"></i></div>
+      <div class="section-title">Fotos del trabajo</div>
+    </div>
+    <div class="section-body">
+      <div class="foto-area" onclick="document.getElementById('foto-input').click()">
+        <i class="ti ti-photo-plus"></i>
+        <p>Toca para añadir fotos</p>
+      </div>
+      <input type="file" id="foto-input" accept="image/*" multiple style="display:none" onchange="addFotos(event)">
+      <div class="fotos-grid" id="fotos-grid"></div>
+    </div>
+  </div>
+
+  <!-- 5. FIRMA -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-signature"></i></div>
+      <div class="section-title">Firma del cliente</div>
+    </div>
+    <div class="section-body">
+      <div class="firma-wrap">
+        <canvas class="firma-area" id="firma-canvas"></canvas>
+        <div class="firma-btns">
+          <button onclick="clearFirma()"><i class="ti ti-trash" style="font-size:13px"></i> Borrar firma</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <div class="bottom-bar-inner">
+    <div class="total-preview">
+      <div class="label">Total con IVA</div>
+      <div class="amount" id="bottom-total">0,00 €</div>
+    </div>
+    <div class="share-row">
+      <button class="btn-share wa" onclick="enviarWhatsApp()">
+        <i class="ti ti-brand-whatsapp"></i><span>WhatsApp</span>
+      </button>
+      <button class="btn-share email" onclick="enviarEmail()">
+        <i class="ti ti-mail"></i><span>Email</span>
+      </button>
+      <button class="btn-nuevo" onclick="nuevoParte()">
+        <i class="ti ti-plus"></i><span>Nuevo</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+let materiales = [{nombre:'',cantidad:1,precio:0}];
+let fotos = [];
+let firmaDibujando = false;
+let ultimoX = 0, ultimoY = 0;
+let numParte = Date.now().toString().slice(-6);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const hoy = new Date();
+  document.getElementById('cli-fecha').value = hoy.toISOString().split('T')[0];
+  document.getElementById('num-parte-header').textContent = '#' + numParte;
+  renderMateriales();
+  initFirma();
+  calcTotal();
+});
+
+// ── MATERIALES ─────────────────────
+function addMaterial() {
+  materiales.push({nombre:'',cantidad:1,precio:0});
+  renderMateriales();
+}
+function delMaterial(i) {
+  if (materiales.length === 1) { materiales[0]={nombre:'',cantidad:1,precio:0}; renderMateriales(); calcTotal(); return; }
+  materiales.splice(i,1);
+  renderMateriales();
+  calcTotal();
+}
+function renderMateriales() {
+  const c = document.getElementById('materiales-list');
+  c.innerHTML = materiales.map((m,i) => `
+    <div class="material-row">
+      <input type="text" placeholder="Descripción" value="${esc(m.nombre)}" oninput="materiales[${i}].nombre=this.value">
+      <input type="number" placeholder="Ud." min="0" step="0.5" value="${m.cantidad||''}" oninput="materiales[${i}].cantidad=parseFloat(this.value)||0;calcTotal()">
+      <input type="number" placeholder="0,00" min="0" step="0.01" value="${m.precio||''}" oninput="materiales[${i}].precio=parseFloat(this.value)||0;calcTotal()">
+      <button class="del-btn" onclick="delMaterial(${i})"><i class="ti ti-x" style="font-size:13px"></i></button>
+    </div>`).join('');
+}
+function esc(s){ return (s||'').replace(/"/g,'&quot;'); }
+
+// ── CÁLCULO ────────────────────────
+function fmt(v){ return v.toFixed(2).replace('.',',')+' €'; }
+function calcTotal() {
+  const tMat = materiales.reduce((s,m)=>s+(m.cantidad*m.precio),0);
+  const horas = parseFloat(document.getElementById('horas').value)||0;
+  const ph    = parseFloat(document.getElementById('precio-hora').value)||0;
+  const km    = parseFloat(document.getElementById('km').value)||0;
+  const pkm   = parseFloat(document.getElementById('precio-km').value)||0;
+  const tMo = horas*ph, tDesp = km*pkm;
+  const total = tMat+tMo+tDesp, iva = total*0.21;
+  document.getElementById('t-mat').textContent  = fmt(tMat);
+  document.getElementById('t-mo').textContent   = fmt(tMo);
+  document.getElementById('t-desp').textContent = fmt(tDesp);
+  document.getElementById('t-total').textContent= fmt(total);
+  document.getElementById('t-iva').textContent  = fmt(iva);
+  document.getElementById('t-total-iva').textContent = fmt(total+iva);
+  document.getElementById('bottom-total').textContent = fmt(total+iva);
+}
+function getTotal() {
+  const tMat = materiales.reduce((s,m)=>s+(m.cantidad*m.precio),0);
+  const horas = parseFloat(document.getElementById('horas').value)||0;
+  const ph    = parseFloat(document.getElementById('precio-hora').value)||0;
+  const km    = parseFloat(document.getElementById('km').value)||0;
+  const pkm   = parseFloat(document.getElementById('precio-km').value)||0;
+  return ((tMat+horas*ph+km*pkm)*1.21).toFixed(2).replace('.',',');
+}
+
+// ── FOTOS ──────────────────────────
+function addFotos(e) {
+  Array.from(e.target.files).forEach(f => {
+    const r = new FileReader();
+    r.onload = ev => { fotos.push(ev.target.result); renderFotos(); };
+    r.readAsDataURL(f);
+  });
+}
+function renderFotos() {
+  document.getElementById('fotos-grid').innerHTML = fotos.map((f,i) =>
+    `<div class="foto-thumb"><img src="${f}" alt="foto ${i+1}">
+     <button class="foto-del" onclick="fotos.splice(${i},1);renderFotos()"><i class="ti ti-x" style="font-size:10px"></i></button></div>`
+  ).join('');
+}
+
+// ── FIRMA ──────────────────────────
+function initFirma() {
+  const c = document.getElementById('firma-canvas');
+  // Ajustar tamaño real del canvas al tamaño CSS
+  const resizeCanvas = () => {
+    const rect = c.getBoundingClientRect();
+    c.width = rect.width;
+    c.height = rect.height;
+  };
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const ctx = c.getContext('2d');
+  ctx.strokeStyle = '#0A5C46'; ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+  function pos(e) {
+    const r = c.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    return [src.clientX - r.left, src.clientY - r.top];
+  }
+  c.addEventListener('mousedown',  e => { firmaDibujando=true; [ultimoX,ultimoY]=pos(e); });
+  c.addEventListener('mousemove',  e => {
+    if(!firmaDibujando) return;
+    const [x,y]=pos(e);
+    ctx.beginPath(); ctx.moveTo(ultimoX,ultimoY); ctx.lineTo(x,y); ctx.stroke();
+    [ultimoX,ultimoY]=[x,y];
+  });
+  c.addEventListener('mouseup',    () => firmaDibujando=false);
+  c.addEventListener('touchstart', e => { e.preventDefault(); firmaDibujando=true; [ultimoX,ultimoY]=pos(e); },{passive:false});
+  c.addEventListener('touchmove',  e => {
+    e.preventDefault();
+    if(!firmaDibujando) return;
+    const [x,y]=pos(e);
+    ctx.beginPath(); ctx.moveTo(ultimoX,ultimoY); ctx.lineTo(x,y); ctx.stroke();
+    [ultimoX,ultimoY]=[x,y];
+  },{passive:false});
+  c.addEventListener('touchend', () => firmaDibujando=false);
+}
+function clearFirma() {
+  const c = document.getElementById('firma-canvas');
+  c.getContext('2d').clearRect(0,0,c.width,c.height);
+}
+
+// ── ENVÍO ──────────────────────────
+function getTextoResumen() {
+  const n    = document.getElementById('cli-nombre').value||'cliente';
+  const dir  = document.getElementById('cli-dir').value||'';
+  const pob  = document.getElementById('cli-pob').value||'';
+  const tipo = document.getElementById('tipo-trabajo').value||'Trabajo';
+  const desc = document.getElementById('desc').value||'';
+  const obs  = document.getElementById('obs').value||'';
+  const horas= document.getElementById('horas').value||'0';
+  const total= getTotal();
+  const fecha= document.getElementById('cli-fecha').value;
+  const fechaFmt = fecha ? new Date(fecha+'T12:00').toLocaleDateString('es-ES') : new Date().toLocaleDateString('es-ES');
+  const matLines = materiales.filter(m=>m.nombre).map(m=>`  • ${m.nombre} × ${m.cantidad} ud. — ${(m.cantidad*m.precio).toFixed(2).replace('.',',')} €`).join('\n');
+  return `🔧 *PARTE DE TRABAJO nº ${numParte}*\n📅 Fecha: ${fechaFmt}\n\n👤 *Cliente:* ${n}\n📍 ${dir}${pob?' · '+pob:''}\n\n🛠️ *Trabajo:* ${tipo}\n${desc}\n${obs?'ℹ️ '+obs+'\n':''}\n📦 *Materiales:*\n${matLines||'  —'}\n\n⏱️ Horas trabajadas: ${horas}h\n\n💶 *Total con IVA: ${total} €*`;
+}
+function enviarWhatsApp() {
+  const tel = document.getElementById('cli-tel').value.replace(/\D/g,'');
+  const txt = encodeURIComponent(getTextoResumen());
+  window.open(tel ? `https://wa.me/34${tel}?text=${txt}` : `https://wa.me/?text=${txt}`, '_blank');
+}
+function enviarEmail() {
+  const asunto = encodeURIComponent(`Parte de trabajo nº ${numParte} - ${document.getElementById('tipo-trabajo').value||'Fontanería'}`);
+  const cuerpo = encodeURIComponent(getTextoResumen().replace(/\*/g,'').replace(/_/g,''));
+  window.open(`mailto:?subject=${asunto}&body=${cuerpo}`, '_blank');
+}
+function nuevoParte() {
+  if(!confirm('¿Crear un nuevo parte? Se borrará el actual.')) return;
+  numParte = Date.now().toString().slice(-6);
+  document.getElementById('num-parte-header').textContent = '#' + numParte;
+  materiales = [{nombre:'',cantidad:1,precio:0}];
+  fotos = [];
+  ['cli-nombre','cli-tel','cli-dir','cli-pob','horas','precio-hora','km','precio-km','desc','obs'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  document.getElementById('tipo-trabajo').value = '';
+  const hoy = new Date();
+  document.getElementById('cli-fecha').value = hoy.toISOString().split('T')[0];
+  clearFirma();
+  renderFotos();
+  renderMateriales();
+  calcTotal();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log('Service Worker Registrado'))
+      .catch(err => console.log('Error al registrar SW', err));
+  }
+</script>
+
+<link rel="manifest" href="./manifest.json">
+</script>
+</body>
+</html>
